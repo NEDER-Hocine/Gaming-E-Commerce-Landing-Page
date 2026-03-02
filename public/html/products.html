@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - NeoMarket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+    
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">NeoMarket</span>
+            </a>
+            
+            <form class="search-form" id="searchForm">
+                <input type="text" class="search-input" placeholder="Search gaming gear..." id="searchInput">
+                <button type="submit" class="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+            
+            <div class="nav-actions">
+                <a href="wishlist.html" class="nav-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <div class="user-menu">
+                    <button class="user-btn" id="userMenuBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="login.html" class="dropdown-item" id="loginLink">Login</a>
+                        <a href="register.html" class="dropdown-item" id="registerLink">Register</a>
+                        <a href="vendor-dashboard.html" class="dropdown-item" id="dashboardLink" style="display: none;">Dashboard</a>
+                        <a href="admin.html" class="dropdown-item" id="adminLink" style="display: none;">Admin Panel</a>
+                        <button class="dropdown-item" id="logoutBtn" style="display: none;">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Gaming Products</h1>
+            <p class="page-subtitle">Discover the best gaming hardware</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="products-layout">
+                <aside class="filters-sidebar">
+                    <div class="filter-card">
+                        <h3 class="filter-title">Filters</h3>
+                        
+                        <div class="filter-group">
+                            <h4 class="filter-label">Categories</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" name="category" value="all" checked>
+                                    <span>All Products</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="category" value="consoles">
+                                    <span>Gaming Consoles</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="category" value="processors">
+                                    <span>Processors</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="category" value="graphics">
+                                    <span>Graphics Cards</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="category" value="peripherals">
+                                    <span>Peripherals</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" name="category" value="monitors">
+                                    <span>Monitors</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h4 class="filter-label">Price Range</h4>
+                            <div class="price-inputs">
+                                <input type="number" class="form-input" placeholder="Min" id="minPrice">
+                                <span>-</span>
+                                <input type="number" class="form-input" placeholder="Max" id="maxPrice">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h4 class="filter-label">Sort By</h4>
+                            <select class="form-select" id="sortBy">
+                                <option value="featured">Featured</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                                <option value="name">Name: A to Z</option>
+                                <option value="rating">Highest Rated</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-secondary btn-block" id="applyFilters">Apply Filters</button>
+                        <button class="btn btn-ghost btn-block" id="resetFilters">Reset</button>
+                    </div>
+                </aside>
+                
+                <div class="products-main">
+                    <div class="products-toolbar">
+                        <div class="results-count" id="resultsCount">Showing 17 products</div>
+                        <button class="btn btn-secondary btn-sm" id="toggleFilters">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <line x1="4" y1="21" x2="4" y2="14"></line>
+                                <line x1="4" y1="10" x2="4" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12" y2="3"></line>
+                                <line x1="20" y1="21" x2="20" y2="16"></line>
+                                <line x1="20" y1="12" x2="20" y2="3"></line>
+                                <line x1="1" y1="14" x2="7" y2="14"></line>
+                                <line x1="9" y1="8" x2="15" y2="8"></line>
+                                <line x1="17" y1="16" x2="23" y2="16"></line>
+                            </svg>
+                            Filters
+                        </button>
+                    </div>
+                    
+                    <div class="products-grid" id="productsGrid">
+                        <p style="color: #00ff88; padding: 20px;">Loading products...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">◆</span>
+                        <span class="logo-text">NeoMarket</span>
+                    </div>
+                    <p class="footer-desc">
+                        The premium marketplace for gaming hardware enthusiasts
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="products.html?category=consoles">Consoles</a></li>
+                        <li><a href="products.html?category=processors">Processors</a></li>
+                        <li><a href="products.html?category=graphics">Graphics Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Sell</h4>
+                    <ul class="footer-links">
+                        <li><a href="register.html">Become a Seller</a></li>
+                        <li><a href="vendor-dashboard.html">Seller Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 NeoMarket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="quickViewModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-lg">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" id="quickViewContent"></div>
+        </div>
+    </div>
+
+    
+    <script src="../js/utils.js"></script>
+    <script src="../js/toasts.js"></script>
+    <script src="../js/modals.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/wishlist.js"></script>
+    <script src="../js/products.js"></script>
+    <script>
+        // Initialize products page
+        document.addEventListener('DOMContentLoaded', () => {
+            setupFilters();
+            // Try to load products, retry if not loaded yet
+            loadAllProducts();
+        });
+
+        function loadAllProducts() {
+            const grid = document.getElementById('productsGrid');
+            const products = window.PRODUCTS;
+            
+            // If products not loaded yet, wait and retry
+            if (!products) {
+                console.log('Waiting for products to load...');
+                setTimeout(loadAllProducts, 200);
+                return;
+            }
+
+            // If fetch failed, show the error and stop
+            if (window.PRODUCTS_ERROR) {
+                grid.innerHTML = `<p style="color: #ff6b6b; padding: 20px;">${window.PRODUCTS_ERROR}</p>`;
+                return;
+            }
+            
+            console.log('Products loaded:', products.length);
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<p style="color: #ff6b6b; padding: 20px;">No products found in database.</p>';
+                return;
+            }
+            
+            try {
+                grid.innerHTML = products.map(product => createProductCard(product)).join('');
+                updateResultsCount(products.length);
+            } catch (error) {
+                console.error('Error rendering products:', error);
+                grid.innerHTML = '<p style="color: #ff6b6b; padding: 20px;">Error loading products. Check console.</p>';
+            }
+        }
+
+        function setupFilters() {
+            const applyBtn = document.getElementById('applyFilters');
+            const resetBtn = document.getElementById('resetFilters');
+            const sortSelect = document.getElementById('sortBy');
+            
+            applyBtn.addEventListener('click', applyFilters);
+            resetBtn.addEventListener('click', resetFilters);
+            sortSelect.addEventListener('change', applyFilters);
+        }
+
+        function applyFilters() {
+            let products = [...window.PRODUCTS];
+            const categoryMapping = {
+                consoles: ['consoles'],
+                processors: ['cpu'],
+                graphics: ['gpu'],
+                peripherals: ['keyboards', 'mice'],
+                monitors: ['monitors']
+            };
+            
+            // Category filter
+            const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+                .map(cb => cb.value);
+            
+            if (!selectedCategories.includes('all')) {
+                products = products.filter(p => {
+                    const slug = p.category_slug || p.category;
+                    return selectedCategories.some(cat => {
+                        const mapped = categoryMapping[cat] || [];
+                        return mapped.includes(slug);
+                    });
+                });
+            }
+            
+            // Price filter
+            const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+            products = products.filter(p => p.price >= minPrice && p.price <= maxPrice);
+            
+            // Sort
+            const sortBy = document.getElementById('sortBy').value;
+            switch(sortBy) {
+                case 'price-asc':
+                    products.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    products.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    products.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'rating':
+                    products.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+            
+            // Update display
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => createProductCard(product)).join('');
+            updateResultsCount(products.length);
+        }
+
+        function resetFilters() {
+            document.querySelectorAll('input[name="category"]').forEach(cb => {
+                cb.checked = cb.value === 'all';
+            });
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            document.getElementById('sortBy').value = 'featured';
+            loadAllProducts();
+        }
+
+        function updateResultsCount(count) {
+            document.getElementById('resultsCount').textContent = `Showing ${count} products`;
+        }
+    </script>
+</body>
+</html>

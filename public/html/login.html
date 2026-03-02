@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NeoMarket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+    
+    <div class="auth-page">
+        <div class="auth-bg"></div>
+        <div class="auth-container">
+            <div class="auth-card">
+                <a href="index.html" class="auth-logo">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">NeoMarket</span>
+                </a>
+                
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Log in to your account to continue</p>
+                
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="loginEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="loginPassword" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Log In
+                    </button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>Demo Accounts</span>
+                </div>
+                
+                <div class="demo-accounts">
+                    <button class="btn btn-secondary btn-sm" onclick="fillDemo('buyer')">
+                        Buyer Demo
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="fillDemo('seller')">
+                        Seller Demo
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="fillDemo('admin')">
+                        Admin Demo
+                    </button>
+                </div>
+                
+                <p class="auth-footer">
+                    Don't have an account? 
+                    <a href="register.html">Create one</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="../js/utils.js"></script>
+    <script src="../js/toasts.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        function fillDemo(role) {
+            const demos = {
+                buyer: { email: 'buyer@neomarket.com', password: 'buyer123' },
+                seller: { email: 'seller@neomarket.com', password: 'seller123' },
+                admin: { email: 'admin@neomarket.com', password: 'admin123' }
+            };
+            
+            const demo = demos[role];
+            document.getElementById('loginEmail').value = demo.email;
+            document.getElementById('loginPassword').value = demo.password;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const result = await window.Auth.login(email, password);
+            
+            if (result.success) {
+                showToast('Login successful!', 'success');
+                
+                setTimeout(() => {
+                    const user = window.Auth.getCurrentUser();
+                    if (user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else if (user.role === 'seller') {
+                        window.location.href = 'vendor-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 1000);
+            } else {
+                showToast(result.message, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

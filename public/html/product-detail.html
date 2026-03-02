@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - NeoMarket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+    
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">NeoMarket</span>
+            </a>
+            
+            <form class="search-form" id="searchForm">
+                <input type="text" class="search-input" placeholder="Search gaming gear..." id="searchInput">
+                <button type="submit" class="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+            
+            <div class="nav-actions">
+                <a href="wishlist.html" class="nav-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <div class="user-menu">
+                    <button class="user-btn" id="userMenuBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="login.html" class="dropdown-item" id="loginLink">Login</a>
+                        <a href="register.html" class="dropdown-item" id="registerLink">Register</a>
+                        <a href="vendor-dashboard.html" class="dropdown-item" id="dashboardLink" style="display: none;">Dashboard</a>
+                        <a href="admin.html" class="dropdown-item" id="adminLink" style="display: none;">Admin Panel</a>
+                        <button class="dropdown-item" id="logoutBtn" style="display: none;">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="products.html">Products</a>
+                <span>›</span>
+                <span id="breadcrumbProduct">Product</span>
+            </nav>
+
+            <div class="product-detail" id="productDetail">
+                <!-- Content loaded by JavaScript -->
+            </div>
+
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2 class="section-title">Related Products</h2>
+            </div>
+            <div class="products-grid" id="relatedProducts">
+                <!-- Related products loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">◆</span>
+                        <span class="logo-text">NeoMarket</span>
+                    </div>
+                    <p class="footer-desc">
+                        The premium marketplace for gaming hardware enthusiasts
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="products.html?category=consoles">Consoles</a></li>
+                        <li><a href="products.html?category=processors">Processors</a></li>
+                        <li><a href="products.html?category=graphics">Graphics Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Sell</h4>
+                    <ul class="footer-links">
+                        <li><a href="register.html">Become a Seller</a></li>
+                        <li><a href="vendor-dashboard.html">Seller Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 NeoMarket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="../js/utils.js"></script>
+    <script src="../js/toasts.js"></script>
+    <script src="../js/modals.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/wishlist.js"></script>
+    <script src="../js/products.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProductDetail();
+            loadRelatedProducts();
+        });
+
+        function loadProductDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            
+            const product = window.PRODUCTS.find(p => p.id === productId);
+            
+            if (!product) {
+                window.location.href = 'products.html';
+                return;
+            }
+
+            document.getElementById('breadcrumbProduct').textContent = product.name;
+            document.title = `${product.name} - NeoMarket`;
+
+            const detailHTML = `
+                <div class="product-detail-grid">
+                    <div class="product-images">
+                        <div class="product-image-main">
+                            <img src="../img_prod/${product.image}" alt="${product.name}">
+                        </div>
+                    </div>
+                    
+                    <div class="product-info">
+                        <div class="product-meta">
+                            <span class="badge badge-primary">${formatCategory(product.category)}</span>
+                            ${product.stock > 0 ? '<span class="badge badge-success">In Stock</span>' : '<span class="badge badge-error">Out of Stock</span>'}
+                        </div>
+                        
+                        <h1 class="product-title">${product.name}</h1>
+                        
+                        <div class="product-rating">
+                            ${createStars(product.rating)}
+                            <span class="rating-text">${product.rating} (${product.reviewCount} reviews)</span>
+                        </div>
+                        
+                        <div class="product-price">
+                            <span class="price-current">$${product.price.toFixed(2)}</span>
+                        </div>
+                        
+                        <div class="product-description">
+                            <p>${product.description}</p>
+                        </div>
+                        
+                        <div class="product-specs">
+                            <h3>Specifications</h3>
+                            <div class="specs-grid">
+                                ${Object.entries(product.specs).map(([key, value]) => `
+                                    <div class="spec-item">
+                                        <span class="spec-label">${formatSpecLabel(key)}:</span>
+                                        <span class="spec-value">${Array.isArray(value) ? value.join(', ') : value}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="product-vendor">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>Sold by: <strong>${product.vendor}</strong></span>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="decrementQty()">-</button>
+                                <input type="number" class="qty-input" value="1" min="1" max="${product.stock}" id="quantity">
+                                <button class="qty-btn" onclick="incrementQty(${product.stock})">+</button>
+                            </div>
+                            
+                            <button class="btn btn-primary btn-lg" onclick="addToCartFromDetail(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                Add to Cart
+                            </button>
+                            
+                            <button class="btn btn-secondary btn-lg" onclick="toggleWishlistItem(${product.id})">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('productDetail').innerHTML = detailHTML;
+        }
+
+        function loadRelatedProducts() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            const product = window.PRODUCTS.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            const related = window.PRODUCTS
+                .filter(p => p.category === product.category && p.id !== productId)
+                .slice(0, 4);
+            
+            document.getElementById('relatedProducts').innerHTML = related.map(p => createProductCard(p)).join('');
+        }
+
+        function incrementQty(max) {
+            const input = document.getElementById('quantity');
+            const current = parseInt(input.value);
+            if (current < max) {
+                input.value = current + 1;
+            }
+        }
+
+        function decrementQty() {
+            const input = document.getElementById('quantity');
+            const current = parseInt(input.value);
+            if (current > 1) {
+                input.value = current - 1;
+            }
+        }
+
+        function addToCartFromDetail(productId) {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            addToCart(productId, quantity);
+        }
+
+        function formatCategory(category) {
+            const categories = {
+                'consoles': 'Gaming Consoles',
+                'processors': 'Processors',
+                'graphics': 'Graphics Cards',
+                'peripherals': 'Peripherals',
+                'monitors': 'Monitors'
+            };
+            return categories[category] || category;
+        }
+
+        function formatSpecLabel(key) {
+            return key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
+        }
+    </script>
+</body>
+</html>

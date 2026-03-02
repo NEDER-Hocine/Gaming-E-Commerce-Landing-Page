@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - NeoMarket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+    
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">NeoMarket</span>
+            </a>
+            
+            <form class="search-form" id="searchForm">
+                <input type="text" class="search-input" placeholder="Search gaming gear..." id="searchInput">
+                <button type="submit" class="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </form>
+            
+            <div class="nav-actions">
+                <a href="wishlist.html" class="nav-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="nav-link active">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <div class="user-menu">
+                    <button class="user-btn" id="userMenuBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="login.html" class="dropdown-item" id="loginLink">Login</a>
+                        <a href="register.html" class="dropdown-item" id="registerLink">Register</a>
+                        <a href="vendor-dashboard.html" class="dropdown-item" id="dashboardLink" style="display: none;">Dashboard</a>
+                        <a href="admin.html" class="dropdown-item" id="adminLink" style="display: none;">Admin Panel</a>
+                        <button class="dropdown-item" id="logoutBtn" style="display: none;">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Shopping Cart</h1>
+            <p class="page-subtitle">Review your items before checkout</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="cart-layout">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items loaded by JS -->
+                </div>
+                
+                <aside class="cart-summary">
+                    <div class="summary-card">
+                        <h3 class="summary-title">Order Summary</h3>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="shipping">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span id="tax">$0.00</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                        
+                        <a href="checkout.html" class="btn btn-primary btn-block" id="checkoutBtn">
+                            Proceed to Checkout
+                        </a>
+                        <a href="products.html" class="btn btn-secondary btn-block">
+                            Continue Shopping
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">◆</span>
+                        <span class="logo-text">NeoMarket</span>
+                    </div>
+                    <p class="footer-desc">
+                        The premium marketplace for gaming hardware enthusiasts
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="products.html?category=consoles">Consoles</a></li>
+                        <li><a href="products.html?category=processors">Processors</a></li>
+                        <li><a href="products.html?category=graphics">Graphics Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Sell</h4>
+                    <ul class="footer-links">
+                        <li><a href="register.html">Become a Seller</a></li>
+                        <li><a href="vendor-dashboard.html">Seller Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 NeoMarket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="../js/utils.js"></script>
+    <script src="../js/toasts.js"></script>
+    <script src="../js/modals.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/wishlist.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Initialize cart page after products and cart data are ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            await waitForProducts();
+            await ensureCartLoaded();
+            renderCart();
+        });
+
+        function waitForProducts() {
+            return new Promise((resolve, reject) => {
+                const check = () => {
+                    if (window.PRODUCTS) return resolve();
+                    if (window.PRODUCTS_ERROR) return reject(window.PRODUCTS_ERROR);
+                    setTimeout(check, 100);
+                };
+                check();
+            });
+        }
+
+        async function ensureCartLoaded() {
+            const user = window.Auth.getCurrentUser();
+            if (!user?.id) return;
+            // Always refresh to sync latest state
+            await window.Cart.fetch();
+        }
+
+        function renderCart() {
+            const cartItems = window.Cart.getItems();
+            const container = document.getElementById('cartItems');
+            
+            if (!cartItems.length) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some gaming gear to get started!</p>
+                        <a href="products.html" class="btn btn-primary">Browse Products</a>
+                    </div>
+                `;
+                updateSummary(0, 0, 0, 0);
+                return;
+            }
+            
+            container.innerHTML = cartItems.map(item => {
+                const product = (window.PRODUCTS || []).find(p => `${p.id}` === `${item.productId}`);
+                if (!product) return '';
+                const price = parseFloat(product.price) || 0;
+                const stock = parseInt(product.stock) || 0;
+                
+                // Handle image display properly for both local and external URLs
+                const dbImage = product.image_url || product.primary_image || product.image;
+                let imageSrc;
+                if (dbImage && typeof dbImage === 'string' && dbImage.match(/^https?:\/\//)) {
+                    // External URL
+                    imageSrc = dbImage;
+                } else {
+                    // Local file
+                    const imageName = window.getImageFilename ? window.getImageFilename(dbImage, product.title || product.name) : (dbImage || 'placeholder.jpg');
+                    imageSrc = `../img_prod/${encodeURIComponent(imageName || 'placeholder.jpg')}`;
+                }
+                
+                // Check if quantity exceeds stock
+                const isOverStock = item.quantity > stock;
+                const maxQuantity = Math.min(item.quantity, stock);
+                
+                return `
+                    <div class="cart-item ${isOverStock ? 'out-of-stock-warning' : ''}">
+                        <img src="${imageSrc}" alt="${product.name || product.title}" class="cart-item-image" onerror="this.onerror=null;this.src='https://placehold.co/200x150?text=No+Image';">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${product.name || product.title}</h3>
+                            <p class="cart-item-price">$${price.toFixed(2)}</p>
+                            ${isOverStock ? '<p class="stock-warning">⚠️ Only ' + stock + ' in stock</p>' : ''}
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="qty-btn" onclick="changeQuantity('${item.productId}', ${Math.max(1, item.quantity - 1)})" 
+                                    ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                            <span class="qty-value">${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQuantity('${item.productId}', ${item.quantity + 1})"
+                                    ${item.quantity >= stock ? 'disabled' : ''}>+</button>
+                        </div>
+                        <div class="cart-item-total">
+                            $${(price * maxQuantity).toFixed(2)}
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart('${item.productId}')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+            
+            calculateSummary();
+        }
+
+        async function changeQuantity(productId, newQuantity) {
+            // Get product to check stock
+            const product = (window.PRODUCTS || []).find(p => `${p.id}` === `${productId}`);
+            if (!product) return;
+            
+            const stock = parseInt(product.stock) || 0;
+            
+            // Validate against stock
+            if (newQuantity > stock) {
+                Toasts.show(`Cannot add more than ${stock} items. Only ${stock} in stock.`, 'error');
+                return;
+            }
+            
+            if (newQuantity < 1) {
+                await window.Cart.removeItem(productId);
+            } else {
+                await window.Cart.updateQuantity(productId, newQuantity);
+            }
+            await window.Cart.fetch();
+            renderCart();
+        }
+
+        async function removeFromCart(productId) {
+            await window.Cart.removeItem(productId);
+            await window.Cart.fetch();
+            renderCart();
+            if (window.Utils?.showToast) window.Utils.showToast('Item removed from cart', 'info');
+        }
+
+        function calculateSummary() {
+            const cartItems = window.Cart.getItems();
+            const subtotal = cartItems.reduce((sum, item) => {
+                const product = (window.PRODUCTS || []).find(p => `${p.id}` === `${item.productId}`);
+                const price = product ? (parseFloat(product.price) || 0) : 0;
+                return sum + (price * item.quantity);
+            }, 0);
+            
+            const shipping = subtotal > 0 ? 15 : 0;
+            const tax = subtotal * 0.1;
+            const total = subtotal + shipping + tax;
+            
+            updateSummary(subtotal, shipping, tax, total);
+        }
+
+        function updateSummary(subtotal, shipping, tax, total) {
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+            
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            if (total === 0) {
+                checkoutBtn.classList.add('disabled');
+                checkoutBtn.style.pointerEvents = 'none';
+            } else {
+                checkoutBtn.classList.remove('disabled');
+                checkoutBtn.style.pointerEvents = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
